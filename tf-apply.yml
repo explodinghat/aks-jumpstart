@@ -19,6 +19,7 @@ steps:
     branchName: 'refs/heads/basic-cluster'
     artifactName: 'terraformPlan'
     targetPath: '$(Pipeline.Workspace)'
+
 - task: TerraformTaskV4@4
   inputs:
     provider: 'azurerm'
@@ -29,6 +30,12 @@ steps:
     backendAzureRmContainerName: 'core-tfstate'
     backendAzureRmKey: 'tf/terraform.state'
 
-- script: |
-    terraform apply $(Pipeline.Workspace)/terraform
-  displayName: 'Terraform Apply'
+- task: TerraformTaskV4@4
+  inputs:
+    provider: 'azurerm'
+    command: 'custom'
+    customCommand: 'apply'
+    commandOptions: '$(Pipeline.Workspace)/terraform.tfplan'
+    outputTo: 'console'
+    environmentServiceNameAzureRM: 'Pay-As-You-Go (9d81bd49-f6ee-4775-a938-63fb5e15f2a2)'
+
