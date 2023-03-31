@@ -25,11 +25,11 @@ steps:
     command: 'custom'
     customCommand: 'plan'
     outputTo: 'file'
-    fileName: 'terraform.tfplan'
+    fileName: 'plan'
     environmentServiceNameAzureRM: 'Pay-As-You-Go (9d81bd49-f6ee-4775-a938-63fb5e15f2a2)'
   
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(Build.SourcesDirectory)/terraform.tfplan'
+    pathtoPublish: '$(Build.SourcesDirectory)/plan'
     artifactName: 'terraformPlan'
     publishLocation: 'Container'
