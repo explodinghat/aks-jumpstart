@@ -18,7 +18,7 @@ steps:
     buildVersionToDownload: 'latestFromBranch'
     branchName: 'refs/heads/basic-cluster'
     artifactName: 'terraformPlan'
-    targetPath: '$(Pipeline.Workspace)'
+    targetPath: '$(Pipeline.Workspace)/artifacts/'
 
 - task: TerraformTaskV4@4
   inputs:
@@ -35,7 +35,7 @@ steps:
     provider: 'azurerm'
     command: 'custom'
     customCommand: 'apply'
-    commandOptions: '$(Pipeline.Workspace)/terraform.tfplan'
+    commandOptions: '$(Pipeline.Workspace)/artifacts/terraform.tfplan'
     outputTo: 'console'
     environmentServiceNameAzureRM: 'Pay-As-You-Go (9d81bd49-f6ee-4775-a938-63fb5e15f2a2)'
 
