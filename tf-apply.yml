@@ -10,13 +10,13 @@ steps:
 - task: TerraformInstaller@1
   inputs:
     terraformVersion: 'latest'
-
 - task: DownloadPipelineArtifact@2
   inputs:
     buildType: 'specific'
     project: '25ffe3b9-5e71-4eba-a87d-d25b7df4d56a'
-    buildVersionToDownload: 'latest'
-    definition: 'Terraform Plan'
+    definition: '16'
+    buildVersionToDownload: 'latestFromBranch'
+    branchName: 'refs/heads/basic-cluster'
     artifactName: 'terraformPlan'
     targetPath: '$(Pipeline.Workspace)'
 - task: TerraformTaskV4@4
