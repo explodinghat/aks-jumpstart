@@ -16,7 +16,7 @@ steps:
     buildType: 'specific'
     project: '25ffe3b9-5e71-4eba-a87d-d25b7df4d56a'
     buildVersionToDownload: 'latest'
-    definition: 'tf-plan'
+    definition: 'Terraform Plan'
     artifactName: 'terraformPlan'
     targetPath: '$(Pipeline.Workspace)'
 - task: TerraformTaskV4@4
