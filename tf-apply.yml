@@ -35,7 +35,7 @@ steps:
     provider: 'azurerm'
     command: 'custom'
     customCommand: 'apply'
-    commandOptions: '$(Pipeline.Workspace)/artifacts/planfile'
+    commandOptions: '$(Pipeline.Workspace)/artifacts/plan'
     outputTo: 'console'
     environmentServiceNameAzureRM: 'Pay-As-You-Go (9d81bd49-f6ee-4775-a938-63fb5e15f2a2)'
 
