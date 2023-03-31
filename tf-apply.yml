@@ -30,5 +30,5 @@ steps:
     backendAzureRmKey: 'tf/terraform.state'
 
 - script: |
-    terraform apply $(Pipeline.Workspace)/terraform.tfplan
+    terraform apply $(Pipeline.Workspace)/terraform
   displayName: 'Terraform Apply'
