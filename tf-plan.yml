@@ -11,11 +11,11 @@ steps:
 
 - script: |
     terraform init
-    terraform plan -out=planfile
+    terraform plan -out=planfile.txt
   displayName: 'Terraform Plan'
   
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(Build.SourcesDirectory)/planfile'
+    pathtoPublish: '$(Build.SourcesDirectory)/planfile.txt'
     artifactName: 'terraformPlan'
     publishLocation: 'Container'
