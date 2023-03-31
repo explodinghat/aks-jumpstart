@@ -1,5 +1,21 @@
-provider "azurerm" {
-  features {}
+terraform {
+  required_version = ">= 1.3"
+  backend "azurerm" {
+    resource_group_name  = "phoenixtech-tfstate-rg"
+    storage_account_name = "kopicloudiactest"
+    container_name       = "mwtfstateyqpqj"
+    key                  = "actions.tfstate"
+  }
+  required_providers {
+    azurerm = {
+      version = "~>3.2"
+      source  = "hashicorp/azurerm"
+    }
+  }
+}
+# Configure the Azure provider
+provider "azurerm" { 
+  features {}  
 }
 
 resource "azurerm_resource_group" "example" {
