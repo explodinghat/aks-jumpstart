@@ -1,0 +1,34 @@
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
+
+- task: DownloadPipelineArtifact@2
+  inputs:
+    buildType: 'specific'
+    project: '25ffe3b9-5e71-4eba-a87d-d25b7df4d56a'
+    definition: '16'
+    buildVersionToDownload: 'latest'
+    artifactName: 'terraformPlan'
+    targetPath: '$(Pipeline.Workspace)'
+- task: TerraformTaskV4@4
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    backendServiceArm: 'Pay-As-You-Go (9d81bd49-f6ee-4775-a938-63fb5e15f2a2)'
+    backendAzureRmResourceGroupName: 'phoenixtech-tfstate-rg'
+    backendAzureRmStorageAccountName: 'mwtfstateyqpqj'
+    backendAzureRmContainerName: 'core-tfstate'
+    backendAzureRmKey: 'tf/terraform.state'
+- task: TerraformTaskV4@4
+  inputs:
+    provider: 'azurerm'
+    command: 'apply'
+    commandOptions: '$(Pipeline.Workspace)/terraform.tfplan'
+    environmentServiceNameAzureRM: 'Pay-As-You-Go (9d81bd49-f6ee-4775-a938-63fb5e15f2a2)'
