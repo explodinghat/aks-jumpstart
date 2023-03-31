@@ -8,9 +8,17 @@ steps:
 - task: TerraformInstaller@1
   inputs:
     terraformVersion: 'latest'
+- task: TerraformTaskV4@4
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    backendServiceArm: 'Pay-As-You-Go (9d81bd49-f6ee-4775-a938-63fb5e15f2a2)'
+    backendAzureRmResourceGroupName: 'phoenixtech-tfstate-rg'
+    backendAzureRmStorageAccountName: 'mwtfstateyqpqj'
+    backendAzureRmContainerName: 'core-tfstate'
+    backendAzureRmKey: 'tf/terraform.state'
 
 - script: |
-    terraform init
     terraform plan -out=terraform.tfplan
   displayName: 'Terraform Plan'
   
